@@ -1,15 +1,23 @@
-import hdiv.grails.showcase.Order;
+import auth.Role
+import auth.User
+import auth.UserRole
+
 class BootStrap {
 
 	def init = { servletContext ->
-		// Clear database
-		Order.executeUpdate('delete from Order')
-		
-		// Init Orders
-		new Order(orderId:"0",username:"j2ee",shipCity:"Palo Alto",cardType:"Visa").save(failOnError:true)
-		new Order(orderId:"1",username:"j2ee",shipCity:"Palo Alto",cardType:"Visa").save(failOnError:true)
-		new Order(orderId:"2",username:"ACID",shipCity:"California",cardType:"Visa").save(failOnError:true)
-	}
-	def destroy = {
+		def userRole = Role.findOrSaveByAuthority('ROLE_USER')
+		def adminRole = Role.findOrSaveByAuthority('ROLE_ADMIN')
+
+		if (!User.count()) {
+			def david = new User(username: 'david', password: 'david').save()
+			UserRole.create david, userRole
+			UserRole.create david, adminRole
+
+			def alex = new User(username: 'alex', password: 'alex').save()
+			UserRole.create alex, userRole
+
+			def tim = new User(username: 'tim', password: 'tim').save()
+			UserRole.create tim, userRole
+		}
 	}
 }
