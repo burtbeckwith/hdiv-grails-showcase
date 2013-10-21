@@ -28,11 +28,11 @@ grails.project.dependency.resolution = {
 		build ':tomcat:7.0.42'
 		compile ':scaffolding:2.0.0'
 		compile ':cache:1.1.1'
-		runtime ':hibernate:3.6.10.1'
+		runtime ':hibernate:3.6.10.2'
 		runtime ':jquery:1.10.2'
 		runtime ':resources:1.2'
 
 		runtime ':spring-security-core:2.0-RC2'
-		compile ':hdiv:1.0-RC1'
+		compile ':hdiv:1.0-RC2'
 	}
 }
